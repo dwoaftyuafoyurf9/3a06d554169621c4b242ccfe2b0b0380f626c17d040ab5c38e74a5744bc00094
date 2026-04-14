@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DELTA DApp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- TON Connect UI -->
+  <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #balance {
+      position: absolute;
+      top: 20px;
+      font-size: 20px;
+      letter-spacing: 2px;
+    }
+
+    .circle {
+      width: 150px;
+      height: 150px;
+      border: 3px solid white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .circle:hover {
+      transform: scale(1.1);
+    }
+
+    .triangle {
+      font-size: 40px;
+    }
+
+    #ton-connect {
+      position: absolute;
+      bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="balance">DELTA: 0</div>
+
+  <div class="circle" onclick="addBalance()">
+    <div class="triangle">∆</div>
+  </div>
+
+  <div id="ton-connect"></div>
+
+  <script>
+    let balance = 0;
+
+    function addBalance() {
+      balance += 0.001;
+      document.getElementById("balance").innerText = "DELTA: " + balance.toFixed(3);
+    }
+
+    // TON Connect setup
+    const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+      manifestUrl: window.location.origin + "/tonconnect-manifest.json",
+      buttonRootId: "ton-connect"
+    });
+  </script>
+
+</body>
+</html>
